@@ -1,0 +1,9 @@
+[
+    // コンパイル無しで実行のみ行うショートカット
+    // 必要なら各自のkeybindings.jsonへコピーして使ってください
+    {
+        "key": "ctrl+f1",
+        "command": "workbench.action.tasks.runTask",
+        "args": "Run Executable Only"
+    }
+]

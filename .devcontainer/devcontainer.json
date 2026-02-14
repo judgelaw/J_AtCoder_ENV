@@ -1,0 +1,52 @@
+{
+  "name": "Ubuntu 25.10 C++/Python/Rust Dev",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "remoteUser": "root",
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "customizations": {
+    "vscode": {
+      // 拡張機能インストール
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cpptools-themes",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.debugpy",
+        "ms-vscode.cmake-tools",
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
+        "ms-vsliveshare.vsliveshare",
+        "usernamehw.errorlens"
+      ],
+      // 拡張機能ごとの詳細設定（インテリセンスの精度向上）
+      "settings": {
+        "C_Cpp.intelliSenseEngine": "default",
+        "C_Cpp.intelliSenseEngineFallback": "enabled",
+        "C_Cpp.default.compilerPath": "/usr/bin/gcc-15",
+        "C_Cpp.default.browse.path": [
+          "/usr/include",
+          "/lib/ac-library"
+        ],
+        "python.languageServer": "Pylance",
+        "python.analysis.typeCheckingMode": "basic",
+        "rust-analyzer.procMacro.enable": false, // マクロ展開を制限（軽くなります）
+        "rust-analyzer.check.command": "check", // clippyより軽いcheckにする
+        "rust-analyzer.linkedProjects": [
+          "./Cargo.toml" // ルートにある場合
+        ],
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.fixAll.ruff": "always"
+        }
+      }
+    }
+  },
+  // .vscodeフォルダ内のシェルスクリプトの実行許可
+  "postCreateCommand": "chmod +x .vscode/*.sh"
+}

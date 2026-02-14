@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "name": "GCC-AtCoder",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/lib/ac-library",
+                "/usr/include"
+            ],
+            "defines": [
+                "ONLINE_JUDGE",
+                "ATCODER",
+                "JUDGE_LOCAL"
+            ],
+            "compilerPath": "/usr/bin/g++",
+            "cStandard": "c17",
+            "cppStandard": "gnu++23",
+            "intelliSenseMode": "linux-gcc-x64",
+            "compilerArgs": [
+                "-march=native",
+                "-mtune=native"
+            ]
+        }
+    ],
+    "version": 4
+}

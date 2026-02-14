@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // 開いているファイルのコンパイルと実行を行う
+      "label": "Run (C/C++/Python/Rust)",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/.vscode/run.sh",
+        "${file}"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "focus": true // 実行時にターミナルにフォーカスを当てる（すぐ入力できる）
+      },
+      "problemMatcher": [
+        "$gcc", // C++用
+        "$rustc", // Rust用
+        "$python" // Python用
+      ]
+    },
+    {
+      // 開いているファイルの実行のみ行う
+      "label": "Run Executable Only",
+      "type": "shell",
+      "command": "${workspaceFolder}/.vscode/run_exe.sh",
+      "args": [
+        "${file}"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}
