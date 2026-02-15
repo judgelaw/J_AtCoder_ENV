@@ -24,7 +24,29 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 * **Docker Desktop** (または Docker Engine)
 * **WSL 2** (Windowsユーザーの場合)
 
-## 2. セットアップ手順
+## 2. インストールされる拡張機能
+このコンテナを開くと、以下の拡張機能が自動的にインストールされ、すぐに利用可能になります。
+
+■ C/C++ 開発
+- ms-vscode.cpptools
+- ms-vscode.cpptools-themes
+- ms-vscode.cmake-tools
+
+■ Python 開発
+- ms-python.python
+- ms-python.vscode-pylance
+- ms-python.debugpy
+
+■ Rust 開発
+- rust-lang.rust-analyzer
+- vadimcn.vscode-lldb
+
+■ 便利ツール
+- ms-vsliveshare.vsliveshare (共同作業)
+- usernamehw.errorlens (エラーの行内表示)
+
+
+## 3. セットアップ手順
 
 ### 手順 A：プロジェクトの取得 (初回のみ)
 以下の手順などで、PCにリポジトリを複製できます。
@@ -59,9 +81,9 @@ git clone https://github.com/judgelaw/J_AtCoder_ENV.git
 3. **コードを実行する**
    コンテナ内での起動が完了したら、ソースコードを作成して以下のショートカットで実行できます。
 
-## 3. ショートカットキー
+## 4. ショートカットキー
 
-本環境では、スムーズなコンテスト参加のために以下の設定を用意しています。
+本環境では、スムーズなコード実行のために以下の設定を用意しています。
 
 | 操作 | ショートカット | 内容 |
 | :--- | :--- | :--- |
