@@ -11,7 +11,7 @@ AtCoderのジャッジサーバーと**ほぼ同等のコンパイルオプシ�
 
 ## 1. 準備するもの
 
-### 推奨PCスペック
+### 推奨PC環境
 DockerおよびWSL2を安定して動作させるため、以下の環境を推奨します。
 * **メモリ**: 最低 4GB（**8GB以上**を強く推奨）
 * **ストレージ**: 10GB 以上の空き容量
@@ -30,7 +30,7 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 ターミナル（コマンドプロンプトやPowerShellなど）を開き、任意のフォルダで以下のコマンドを実行してプロジェクトをダウンロードします。
 
 ```bash
-git clone [https://github.com/judgelaw/J_AtCoder_ENV.git](https://github.com/judgelaw/J_AtCoder_ENV.git)
+git clone https://github.com/judgelaw/J_AtCoder_ENV.git
 ```
 
 ### 手順 B：.wslconfigファイルの設定
