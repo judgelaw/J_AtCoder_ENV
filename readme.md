@@ -27,15 +27,13 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 ## 2. インストールされる拡張機能
 このコンテナを開くと、以下の拡張機能が自動的にインストールされ、すぐに利用可能になります。
 
-### ■ C/C++ 開発 (Main)
+### ■ C/C++
 * **C/C++ (ms-vscode.cpptools)**
-  - コードの補完（IntelliSense）やエラーのリアルタイム指摘を行います。
+  - コード補完、エラー指摘、およびデバッグ機能をまとめて提供します。
 * **C/C++ Themes (ms-vscode.cpptools-themes)**
-  - C++のコードを見やすく色分け（ハイライト）します。
-* **CMake Tools (ms-vscode.cmake-tools)**
-  - 複雑なプロジェクト構成を管理するためのツールですが、環境の整合性を保つために導入しています。
+  - C++のコードを見やすくハイライトします。
 
-### ■ Python 開発
+### ■ Python
 * **Python (ms-python.python)**
   - Pythonの実行、デバッグ、コード補完を提供する必須機能です。
 * **Pylance (ms-python.vscode-pylance)**
@@ -43,7 +41,7 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 * **debugger for debugpy (ms-python.debugpy)**
   - コードを1行ずつ止めて、変数の値を確認しながらデバッグできます。
 
-### ■ Rust 開発
+### ■ Rust
 * **rust-analyzer (rust-lang.rust-analyzer)**
   - Rust開発の心臓部です。非常に強力なコード補完と型推論を表示します。
 * **CodeLLDB (vadimcn.vscode-lldb)**
@@ -51,7 +49,7 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 
 ### ■ 便利ツール (Utility)
 * **Error Lens (usernamehw.errorlens)**
-  - **【超便利】** 通常はマウスを重ねないと見えないエラーメッセージを、コードのすぐ横に常に表示します。
+  - エラーメッセージを、コードのすぐ横に常に表示します。
 * **Live Share (ms-vsliveshare.vsliveshare)**
   - 他の人のVS Codeと接続して、リアルタイムでコードを共有・共同編集できます。
 

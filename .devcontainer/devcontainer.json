@@ -18,7 +18,7 @@
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-python.debugpy",
-        "ms-vscode.cmake-tools",
+        // "ms-vscode.cmake-tools",
         "rust-lang.rust-analyzer",
         "vadimcn.vscode-lldb",
         "ms-vsliveshare.vsliveshare",
