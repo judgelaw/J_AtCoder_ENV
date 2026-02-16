@@ -48,5 +48,6 @@
     }
   },
   // .vscodeフォルダ内のシェルスクリプトの実行許可
-  "postCreateCommand": "chmod +x .vscode/*.sh"
+  // genエイリアスの作成
+  "postCreateCommand": "bash .vscode/setup.sh"
 }

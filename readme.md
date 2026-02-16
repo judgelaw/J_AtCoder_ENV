@@ -7,6 +7,34 @@ AtCoderのジャッジサーバーと**ほぼ同等のコンパイルオプシ�
 * Python 3
 * Rust
 
+### インストールされる拡張機能
+このコンテナを開くと、以下の拡張機能が自動的にインストールされ、すぐに利用可能になります。
+
+#### ■ C/C++
+* **C/C++ (ms-vscode.cpptools)**
+  - コード補完、エラー指摘、およびデバッグ機能をまとめて提供します。
+* **C/C++ Themes (ms-vscode.cpptools-themes)**
+  - C++のコードを見やすくハイライトします。
+
+#### ■ Python
+* **Python (ms-python.python)**
+  - Pythonの実行、デバッグ、コード補完を提供する必須機能です。
+* **Pylance (ms-python.vscode-pylance)**
+  - 型チェックや高速な補完を行い、書き間違いを未然に防ぎます。
+* **debugger for debugpy (ms-python.debugpy)**
+  - コードを1行ずつ止めて、変数の値を確認しながらデバッグできます。
+
+#### ■ Rust
+* **rust-analyzer (rust-lang.rust-analyzer)**
+  - Rust開発の心臓部です。非常に強力なコード補完と型推論を表示します。
+* **CodeLLDB (vadimcn.vscode-lldb)**
+  - Rustのコードをステップ実行してバグを探すためのデバッガです。
+
+#### ■ 便利ツール (Utility)
+* **Error Lens (usernamehw.errorlens)**
+  - エラーメッセージを、コードのすぐ横に常に表示します。
+* **Live Share (ms-vsliveshare.vsliveshare)**
+  - 他の人のVS Codeと接続して、リアルタイムでコードを共有・共同編集できます。
 ---
 
 ## 1. 準備するもの
@@ -24,34 +52,7 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 * **Docker Desktop** (または Docker Engine)
 * **WSL 2** (Windowsユーザーの場合、Ubuntuなど適当なディストリビューションを入れておいてください)
 
-## 2. インストールされる拡張機能
-このコンテナを開くと、以下の拡張機能が自動的にインストールされ、すぐに利用可能になります。
 
-### ■ C/C++
-* **C/C++ (ms-vscode.cpptools)**
-  - コード補完、エラー指摘、およびデバッグ機能をまとめて提供します。
-* **C/C++ Themes (ms-vscode.cpptools-themes)**
-  - C++のコードを見やすくハイライトします。
-
-### ■ Python
-* **Python (ms-python.python)**
-  - Pythonの実行、デバッグ、コード補完を提供する必須機能です。
-* **Pylance (ms-python.vscode-pylance)**
-  - 型チェックや高速な補完を行い、書き間違いを未然に防ぎます。
-* **debugger for debugpy (ms-python.debugpy)**
-  - コードを1行ずつ止めて、変数の値を確認しながらデバッグできます。
-
-### ■ Rust
-* **rust-analyzer (rust-lang.rust-analyzer)**
-  - Rust開発の心臓部です。非常に強力なコード補完と型推論を表示します。
-* **CodeLLDB (vadimcn.vscode-lldb)**
-  - Rustのコードをステップ実行してバグを探すためのデバッガです。
-
-### ■ 便利ツール (Utility)
-* **Error Lens (usernamehw.errorlens)**
-  - エラーメッセージを、コードのすぐ横に常に表示します。
-* **Live Share (ms-vsliveshare.vsliveshare)**
-  - 他の人のVS Codeと接続して、リアルタイムでコードを共有・共同編集できます。
 
 ## 3. セットアップ手順（WSL 2 推奨構成）
 本環境は、動作速度の向上のため **WSL 2 (Linux)** 上に配置して利用することを推奨します。
@@ -59,12 +60,12 @@ DockerおよびWSL2を安定して動作させるため、以下の環境を推�
 
 ### 手順 A： WSL 2 の最適化設定 (.wslconfig)(初回のみ)
 WSL 2 が使用するメモリなどを制限・最適化します。
-1. Windowsのユーザーフォルダ（`C:\Users\<ユーザー名>`）に `.wslconfig` という名前のファイルを作成します。このリポジトリ内にも含めているので必要があればコピーしてください 
+1. Windowsのユーザーフォルダ（`C:\Users\<ユーザー名>`）に `.wslconfig` という名前のファイルを作成します。このリポジトリ内にも含めているので、必要があればコピーして使用するPCのCPU,メモリに合わせて内容を書き換えてください 
 2. すでに WSL が起動している場合は、PowerShell で wsl --shutdown を実行して完全に停止させてください。
 
 ### 手順 B： VS Code で WSL に接続する
 1. VS Code を起動し、左下の **青いアイコン (><)** をクリックします。
-2. 表示されたメニューから **[WSL に接続 (Connect to WSL)]** を選択します。
+2. 表示されたメニューから **[WSL への接続 (Connect to WSL)]** を選択します。
 
 ### 手順 C：プロジェクトの取得 (初回のみ)
 以下の手順などで、PCにリポジトリを複製できます。
@@ -73,7 +74,7 @@ WSL 2 が使用するメモリなどを制限・最適化します。
 2. **[Git リポジトリのクローン]** をクリックします。
 3. このリポジトリのURLを貼り付けて `Enter` を押します。
    `https://github.com/judgelaw/J_AtCoder_ENV.git`
-4. 保存先のフォルダ(/home/<ユーザー名>　など)を選択すると、自動的にダウンロードが始まります。
+4. 保存先のフォルダ(/home/<ユーザー名> など)を選択すると、自動的にダウンロードが始まります。
 
 #### 方法2：コマンドを使う
 ターミナル（bash)を開き、任意のフォルダで以下のコマンドを実行してプロジェクトをダウンロードします。
@@ -85,6 +86,7 @@ git clone https://github.com/judgelaw/J_AtCoder_ENV.git
 ### 手順 D：コンテナの起動
 1. コンテナを作成・起動する前に、**Docker Desktop を起動**しておいてください。
    - ※「Dockerデーモンが実行されていることを確認してください」というエラーが出る場合は、Dockerが起動していないサインです。
+   - Docker Desktop の設定で `Settings > Resources > WSL Integration` が有効になっていることを確認してください。複数の Linux（Ubuntuなど）を入れている場合は、使用するディストリビューションのスイッチを ON にします。
 2. **プロジェクトを開く**
    本フォルダをVS Codeで開きます。
 3. **コンテナを起動する**
@@ -105,5 +107,12 @@ git clone https://github.com/judgelaw/J_AtCoder_ENV.git
 
 > [!NOTE]
 > `Ctrl + F1` を有効にするには、`/.vscode/keybind.json` の内容を、お使いのVS Code本体の `keybindings.json` にコピーして貼り付けてください。
+
+## 5. 自動化ツール (gen.sh) の仕様
+- **ファイル構成**: `abc/350/a.cpp` のように、コンテストフォルダ直下に各問題のファイルを作成します。
+- **安全設計**: すでに同名のファイルが存在する場合は、**上書きせずにスキップ**します。
+- **実行例**:
+  - `gen abc350` : A-Gの問題ファイル (C++) を作成。
+  - `gen arc150 py 3` : A-Cの問題ファイル (Python) を作成。
 
 ---
