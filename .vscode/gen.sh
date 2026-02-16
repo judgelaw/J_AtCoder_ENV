@@ -63,7 +63,7 @@ get_alphabet() {
     while [ "$n" -gt 0 ]; do
         n=$((n - 1))
         local m=$((n % 26))
-        local char=$(printf "\\$(printf '%o' $((m + 97)))")
+        local char=$(printf "\\$(printf '%o' $((m + 65)))")
         s="$char$s"
         n=$((n / 26))
     done
