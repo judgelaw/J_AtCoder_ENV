@@ -13,6 +13,7 @@ if [ -z "$INPUT" ]; then
 fi
 
 # --- 1. 引数の解析 (数と言語を抽出) ---
+$COUNT=""
 for arg in "$@"; do
     if [[ "$arg" =~ ^[0-9]+$ ]]; then
         COUNT=$arg
@@ -43,8 +44,8 @@ case "$PREFIX" in
 esac
 
 # --- 4. 作成数の決定 (コンテスト種別ごとのデフォルト設定) ---
-if [ -n "$COUNT_ARG" ]; then
-    COUNT=$COUNT_ARG
+if [ -n "$COUNT" ]; then
+    COUNT=$COUNT
 elif [ "$PREFIX" == "ABC" ]; then
     COUNT=7
 elif [ "$PREFIX" == "AWC" ]; then
