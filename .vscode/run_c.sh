@@ -5,6 +5,7 @@ FILE="$1"
 WORKSPACE_ROOT="$(pwd)"
 OUT="$WORKSPACE_ROOT/main.exe"
 
+COMPILER="gcc-14"
 CFLAGS="-O2
         -march=native
         -std=c23
@@ -16,7 +17,7 @@ CFLAGS="-O2
 
 LIBS="-lm"
 echo "🔧 Compile C"
-gcc $CXXFLAGS  "$FILE" -o "$OUT" $LIBS
+$COMPILER $CXXFLAGS  "$FILE" -o "$OUT" $LIBS
 
 echo "▶ Run"
 "$OUT"

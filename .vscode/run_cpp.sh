@@ -5,6 +5,7 @@ FILE="$1"
 WORKSPACE_ROOT="$(pwd)"
 OUT="$WORKSPACE_ROOT/main.exe"
 
+COMPILER="g++"
 CXXFLAGS="
 -std=gnu++2b
 -O2
@@ -19,6 +20,8 @@ CXXFLAGS="
 -fconstexpr-depth=2147483647
 -fconstexpr-loop-limit=2147483647
 -fconstexpr-ops-limit=2147483647
+-fopenmp
+-pthread
 "
 
 INCLUDES="
@@ -29,12 +32,15 @@ INCLUDES="
 
 LIBS="
 -L/opt/boost/gcc/lib
+-lboost_serialization
+-lboost_system
 -lgmpxx
 -lgmp
+-fopenmp
 "
 
 echo "🔧 Compile C++"
-g++ $CXXFLAGS $INCLUDES "$FILE" -o "$OUT" $LIBS
+$COMPILER $CXXFLAGS $INCLUDES "$FILE" -o "$OUT" $LIBS
 
 echo "▶ Run"
 "$OUT"
