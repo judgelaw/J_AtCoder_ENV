@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/lib/ac-library",
-                "/usr/include"
+                "/usr/include",
+                "/opt/boost/gcc/include"
             ],
             "defines": [
                 "ONLINE_JUDGE",

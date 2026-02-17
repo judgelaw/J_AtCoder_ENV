@@ -26,7 +26,7 @@ AtCoderのジャッジサーバーと**ほぼ同等のコンパイルオプシ�
 
 #### ■ Rust
 * **rust-analyzer (rust-lang.rust-analyzer)**
-  - Rust開発の心臓部です。非常に強力なコード補完と型推論を表示します。
+  - 非常に強力なコード補完と型推論を表示します。
 * **CodeLLDB (vadimcn.vscode-lldb)**
   - Rustのコードをステップ実行してバグを探すためのデバッガです。
 

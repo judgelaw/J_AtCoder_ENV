@@ -1,17 +1,25 @@
 # Ubuntu 25.10 ベース
 FROM ubuntu:25.10
-ENV TZ=Asia/Tokyo
+ENV TZ=Asia/Tokyo\
+    DEBIAN_FRONTEND=noninteractive \
+    PYENV_ROOT="/root/.pyenv" \
+    PATH="/root/.pyenv/shims:/root/.pyenv/bin:/root/.cargo/bin:${PATH}"
 
 
-# 非対話モードでaptを実行できるようにする
-ENV DEBIAN_FRONTEND=noninteractive
+# --- 各言語バージョンの定義 ---
+ARG GCC_VERSION=14
+ARG GPP_VERSION=15
+ARG PYTHON_VERSION=3.13.7
+ARG RUST_VERSION=1.89.0
+ARG ACL_TAG=v1.5.1
+ARG ACL_PATH=/lib/ac-library
 
 # パッケージ更新と基本ツール
-ARG GCC_VERSION=15
 RUN apt update && apt upgrade -y && \
-    apt install -y build-essential \
+    apt install -y --no-install-recommends \
+    build-essential \
     gcc-${GCC_VERSION} \
-    g++-${GCC_VERSION} \
+    g++-${GPP_VERSION} \
     git \
     time \
     tree \
@@ -27,6 +35,10 @@ RUN apt update && apt upgrade -y && \
     libgmp-dev \
     libeigen3-dev \
     libboost-all-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    liblzma-dev \
     python3 \
     python3-pip \
     python3-venv \
@@ -40,14 +52,14 @@ RUN apt update && apt upgrade -y && \
     # -------------------------
     && rm -rf /var/lib/apt/lists/*
 
-# Rust インストール
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
-RUN rustup component add rust-analyzer
+# Python: pyenvを使ってバージョンを固定
+RUN curl https://pyenv.run | bash && \
+    pyenv install ${PYTHON_VERSION} && \
+    pyenv global ${PYTHON_VERSION}
 
-# C++用ArCoderLibrary インストール
-ARG ACL_TAG=v1.5.1
-ARG ACL_PATH=/lib/ac-library
+# Rust インストール
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --default-toolchain ${RUST_VERSION} && \
+    rustup component add rust-analyzer
 
 RUN git clone --depth 1 \
     -b ${ACL_TAG} \
