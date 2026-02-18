@@ -36,6 +36,7 @@
         ],
         "python.languageServer": "Pylance",
         "python.analysis.typeCheckingMode": "basic",
+        "python.terminal.activateEnvironment": false,
         "rust-analyzer.procMacro.enable": false, // マクロ展開を制限（軽くなります）
         "rust-analyzer.check.command": "check", // clippyより軽いcheckにする
         "rust-analyzer.linkedProjects": [
