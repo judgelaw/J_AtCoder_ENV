@@ -57,8 +57,14 @@ RUN apt update && apt upgrade -y && \
 
 # Python: pyenvを使ってバージョンを固定
 RUN curl https://pyenv.run | bash && \
+    export PYENV_ROOT="$HOME/.pyenv" && \
+    export PATH="$PYENV_ROOT/bin:$PATH" && \
+    eval "$(pyenv init -)" && \
     pyenv install ${PYTHON_VERSION} && \
-    pyenv global ${PYTHON_VERSION}
+    pyenv global ${PYTHON_VERSION} && \
+    echo "export PYENV_ROOT=\"\$HOME/.pyenv\"" >> ~/.bashrc && \
+    echo "export PATH=\"\$PYENV_ROOT/bin:\$PATH\"" >> ~/.bashrc && \
+    echo 'eval "$(pyenv init - --no-rehash)" > /dev/null 2>&1' >> ~/.bashrc
 
 # Rust インストール
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --default-toolchain ${RUST_VERSION} && \
