@@ -64,6 +64,7 @@ RUN curl https://pyenv.run | bash && \
     pyenv global ${PYTHON_VERSION} && \
     echo "export PYENV_ROOT=\"\$HOME/.pyenv\"" >> ~/.bashrc && \
     echo "export PATH=\"\$PYENV_ROOT/bin:\$PATH\"" >> ~/.bashrc && \
+    echo 'export PYENV_VIRTUALENV_DISABLE_PROMPT=1' >> "$HOME/.bashrc" && \
     echo 'eval "$(pyenv init - --no-rehash)" > /dev/null 2>&1' >> ~/.bashrc
 
 # Rust インストール
