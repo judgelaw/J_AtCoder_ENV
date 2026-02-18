@@ -36,6 +36,9 @@ RUN apt update && apt upgrade -y && \
     libeigen3-dev \
     libboost-all-dev \
     libbz2-dev \
+    libomp-dev \
+    zlib1g-dev \
+    libz3-dev \
     libreadline-dev \
     libsqlite3-dev \
     liblzma-dev \
@@ -61,6 +64,7 @@ RUN curl https://pyenv.run | bash && \
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y --default-toolchain ${RUST_VERSION} && \
     rustup component add rust-analyzer
 
+# AC Libraryインストール 
 RUN git clone --depth 1 \
     -b ${ACL_TAG} \
     https://github.com/atcoder/ac-library.git \
