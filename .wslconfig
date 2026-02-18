@@ -3,7 +3,7 @@
 memory=8GB
 
 # スワップスペース（メモリ不足時にディスクを代用する領域）
-swap=2GB
+swap=8GB
 
 # CPUのコア数（任意。PCのコア数の半分程度が目安）
 processors=4
