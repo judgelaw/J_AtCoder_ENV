@@ -2,7 +2,6 @@
 set -e
 
 FILE="$1"
-
 if [ -z "$FILE" ]; then
     echo "❌ No file provided."
     exit 1
@@ -10,31 +9,43 @@ fi
 
 EXT="${FILE##*.}"
 WORKSPACE_DIR="$(pwd)"
-OUTPUT="${WORKSPACE_DIR}/main.exe"
 
+# 言語ごとにバイナリの場所を特定
 case "$EXT" in
     rs)
-        # Rust
-        echo "▶ コンパイル済みRustファイルの実行"
-        echo "「Running \"target/release/main\"」 が表示されたら入力してください"
-
-        mkdir -p "$WORKSPACE_DIR/src"
-        cp "$FILE" "$WORKSPACE_DIR/src/main.rs"
-        cargo run --release --offline
+        TARGET="${WORKSPACE_DIR}/target/release/main"
+        LABEL="Rust (Release)"
         ;;
     c|cpp)
-        echo "▶ コンパイル済みexeファイルの実行"
-        "$OUTPUT"
+        TARGET="${WORKSPACE_DIR}/main.exe"
+        LABEL="C++/C"
         ;;
     py)
-        # Python
         echo "▶ Run Python"
         python3 "$FILE"
+        echo "✅ Done"
+        exit 0
         ;;
     *)
         echo "❌ Unsupported file type: .$EXT"
         exit 1
         ;;
 esac
+
+# コンパイル済みファイルの実行処理（共通）
+echo "▶ ${LABEL} バイナリの実行"
+
+if [ -f "$TARGET" ]; then
+    # RUST_BACKTRACEを付けてもC++には無害なので一律付与、または分岐
+    [ "$EXT" = "rs" ] && export RUST_BACKTRACE=1
+    
+    # バイナリを実行
+    "$TARGET"
+else
+    echo "❌ Error: Binary not found."
+    echo "   Path: $TARGET"
+    echo "   Please Build (Ctrl+Shift+B) first."
+    exit 1
+fi
 
 echo "✅ Done"

@@ -133,6 +133,6 @@ echo "🔧 Compile Rust"
 cargo build --release --manifest-path "$CARGO_TOML" --offline
 
 echo "▶ Run"
-cargo run --release --quiet --manifest-path "$CARGO_TOML" --offline
+RUST_BACKTRACE=1 cargo run --release --quiet --manifest-path "$CARGO_TOML" --offline
 
 echo "✅ Done"
