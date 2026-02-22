@@ -114,6 +114,8 @@ git clone https://github.com/judgelaw/J_AtCoder_ENV.git
 
 > [!NOTE]
 > `Ctrl + F1` を有効にするには、`/.vscode/keybind.json` の内容を、お使いのVS Code本体の `keybindings.json` にコピーして貼り付けてください。
+
+> [!NOTE]
 > Rustファイルを多用する場合は`target`フォルダのファイルサイズが非常に大きくなるので、たまに`cargo clean`してください。
 
 ## 4. ファイル作成自動化ツール (gen.sh) の仕様
