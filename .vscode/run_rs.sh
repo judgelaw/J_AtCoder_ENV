@@ -16,18 +16,8 @@ fi
 
 # ===== workspace 直下を基準 =====
 WORKSPACE_DIR="$(pwd)"  # run.sh を workspace 直下で実行する前提
-SRC_DIR="${WORKSPACE_DIR}/src"
-MAIN_RS="${SRC_DIR}/main.rs"
-
-
-# ===== src ディレクトリ作成 =====
-mkdir -p "$SRC_DIR"
-
-# ===== Rust ファイルを main.rs にコピー =====
-cp "$FILE" "$MAIN_RS"
-echo "Copied $FILE → $MAIN_RS"
-
 CARGO_TOML="${WORKSPACE_DIR}/Cargo.toml"
+
 if [ ! -f "$CARGO_TOML" ]; then
     echo "Creating default Cargo.toml..."
     cat > "$CARGO_TOML" <<EOL
@@ -115,10 +105,6 @@ proconio = { version = "=0.5.0", features = ["derive"] }
 text_io = "=0.1.13"
 rustc-hash = "=2.1.1"
 smallvec = { version = "=1.15.1", features = ["const_generics", "const_new", "write", "union", "serde", "arbitrary"] }
-
-[[bin]]
-name = "main"
-path = "src/main.rs"
 EOL
 fi
 
@@ -128,11 +114,28 @@ if [ ! -d "${WORKSPACE_DIR}/target" ]; then
     cargo fetch --manifest-path "$CARGO_TOML"
 fi
 
+CLEAN_PATH=$(echo "$FILE" | sed 's|^\./||')
+
+# 2. 各パーツを抽出
+# dirname で ABC/300 を取得し、それをさらに分解
+DIR_PART=$(dirname "$CLEAN_PATH")    # ABC/300
+FILE_PART=$(basename "$CLEAN_PATH")   # A.rs
+
+SUFFIX=$(echo "$DIR_PART" | rev | cut -d'/' -f1 | rev) # 000
+PREFIX=$(echo "$DIR_PART" | rev | cut -d'/' -f2 | rev) # ABC
+
+
+# ファイル名から拡張子を除去 (A.rs -> A)
+PROBLEM="${FILE_PART%.*}"
+
+# BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
+BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
+
 # ===== ビルド / 実行 =====
 echo "🔧 Compile Rust"
-cargo build --release --manifest-path "$CARGO_TOML" --offline
+cargo build --bin "$BIN_NAME"  --release --manifest-path "$CARGO_TOML" --offline
 
 echo "▶ Run"
-RUST_BACKTRACE=1 cargo run --release --quiet --manifest-path "$CARGO_TOML" --offline
+RUST_BACKTRACE=1 cargo run --bin "$BIN_NAME" --release --quiet --manifest-path "$CARGO_TOML" --offline
 
 echo "✅ Done"

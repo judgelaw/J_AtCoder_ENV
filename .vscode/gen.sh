@@ -75,6 +75,9 @@ mkdir -p "$BASE_DIR"
 echo "Target Directory: $BASE_DIR"
 echo "Problem Count   : $COUNT"
 
+# ルートにあるテンプレート用の Cargo.toml パス
+ROOT_CARGO_TOML="$ROOT_DIR/Cargo.toml"
+
 
 # 指定された数だけファイルを生成
 for ((i=1; i<=COUNT; i++)); do
@@ -85,7 +88,7 @@ for ((i=1; i<=COUNT; i++)); do
         FILENAME="$p.$lang"
         TARGET_FILE="$BASE_DIR/$FILENAME"
         
-        # ファイル（またはディレクトリ）がすでに存在するかチェック
+        # ファイルが存在するかチェック
         if [ -e "$TARGET_FILE" ]; then
             echo "Skipped: $FILENAME (already exists)"
         else
@@ -98,7 +101,26 @@ for ((i=1; i<=COUNT; i++)); do
                 echo "Created: $FILENAME (empty file)"
             fi
         fi
+        
+        # --- Rust の場合のみ Cargo.toml に追記 ---
+        if [ "$lang" == "rs" ]; then
+            # すでに bin 登録されているかチェック
+            if ! grep -q "name = \"${PREFIX}${SUFFIX}_${p}\"" "$ROOT_CARGO_TOML"; then
+                cat <<EOF >> "$ROOT_CARGO_TOML"
+
+[[bin]]
+name = "${PREFIX}${SUFFIX}_${p}"
+path = "${PREFIX}/${SUFFIX}/$FILENAME"
+EOF
+                echo "Registered $BASE_DIR/$FILENAME to Cargo.toml"
+            fi
+        fi
+        # --------------------------------------
+        
+
     done
 done
+
+
 
 echo "Successfully created: $BASE_DIR"

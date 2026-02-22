@@ -13,7 +13,19 @@ WORKSPACE_DIR="$(pwd)"
 # 言語ごとにバイナリの場所を特定
 case "$EXT" in
     rs)
-        TARGET="${WORKSPACE_DIR}/target/release/main"
+        DIR_PART=$(dirname "$FILE")    # ABC/300
+        FILE_PART=$(basename "$FILE")   # A.rs
+
+        SUFFIX=$(echo "$DIR_PART" | rev | cut -d'/' -f1 | rev) # 000
+        PREFIX=$(echo "$DIR_PART" | rev | cut -d'/' -f2 | rev) # ABC
+
+        # ファイル名から拡張子を除去 (A.rs -> A)
+        PROBLEM="${FILE_PART%.*}"
+
+        # BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
+        BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
+
+        TARGET="${WORKSPACE_DIR}/release/${BIN_NAME}"
         LABEL="Rust (Release)"
         ;;
     c|cpp)
