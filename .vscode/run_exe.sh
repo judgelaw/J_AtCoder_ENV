@@ -25,7 +25,7 @@ case "$EXT" in
         # BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
         BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
 
-        TARGET="${WORKSPACE_DIR}/release/${BIN_NAME}"
+        TARGET="${WORKSPACE_DIR}/target/release/${BIN_NAME}"
         LABEL="Rust (Release)"
         ;;
     c|cpp)
