@@ -106,12 +106,27 @@ for ((i=1; i<=COUNT; i++)); do
         if [ "$lang" == "rs" ]; then
             # すでに bin 登録されているかチェック
             if ! grep -q "name = \"${PREFIX}${SUFFIX}_${p}\"" "$ROOT_CARGO_TOML"; then
+                case "$PREFIX" in
+                    "ABC" | "ARC" | "AGC" | "AHC" | "AWC" | "ADT")
+                        # 特定のコンテストは種類ごとのフォルダに格納
                 cat <<EOF >> "$ROOT_CARGO_TOML"
 
 [[bin]]
 name = "${PREFIX}${SUFFIX}_${p}"
 path = "${PREFIX}/${SUFFIX}/$FILENAME"
 EOF
+                ;;
+                *)
+                # OthreContestはコンテスト名フォルダに格納
+                cat <<EOF >> "$ROOT_CARGO_TOML"
+
+[[bin]]
+name = "${INPUT}_${p}"
+path = "OtherContest/${INPUT}/$FILENAME"
+EOF
+                ;;
+                esac
+
                 echo "Registered $BASE_DIR/$FILENAME to Cargo.toml"
             fi
         fi

@@ -22,8 +22,18 @@ case "$EXT" in
         # ファイル名から拡張子を除去 (A.rs -> A)
         PROBLEM="${FILE_PART%.*}"
 
-        # BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
-        BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
+        case "$PREFIX" in
+            "ABC" | "ARC" | "AGC" | "AHC" | "AWC" | "ADT")
+                # BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
+                BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
+
+                ;;
+            *)
+                # それ以外はすべて OtherContest フォルダに格納
+                BIN_NAME=$(echo "${SUFFIX}_${PROBLEM}") 
+                ;;
+        esac
+
 
         TARGET="${WORKSPACE_DIR}/target/release/${BIN_NAME}"
         LABEL="Rust (Release)"

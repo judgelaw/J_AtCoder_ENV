@@ -132,8 +132,17 @@ PREFIX=$(echo "$DIR_PART" | rev | cut -d'/' -f2 | rev) # ABC
 # ファイル名から拡張子を除去 (A.rs -> A)
 PROBLEM="${FILE_PART%.*}"
 
-# BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
-BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
+case "$PREFIX" in
+    "ABC" | "ARC" | "AGC" | "AHC" | "AWC" | "ADT")
+        # BIN_NAME を作成 (gen.sh の規則に合わせる: abc300_a)
+        BIN_NAME=$(echo "${PREFIX}${SUFFIX}_${PROBLEM}")
+
+        ;;
+    *)
+        # それ以外はすべて OtherContest フォルダに格納
+        BIN_NAME=$(echo "${SUFFIX}_${PROBLEM}")
+        ;;
+esac
 
 # ===== ビルド / 実行 =====
 echo "🔧 Compile Rust"
