@@ -105,6 +105,10 @@ proconio = { version = "=0.5.0", features = ["derive"] }
 text_io = "=0.1.13"
 rustc-hash = "=2.1.1"
 smallvec = { version = "=1.15.1", features = ["const_generics", "const_new", "write", "union", "serde", "arbitrary"] }
+
+[[bin]]
+name = "workspacesample_test"
+path = "sample/test.rs"
 EOL
 fi
 
