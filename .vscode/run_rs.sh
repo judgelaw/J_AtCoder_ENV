@@ -105,10 +105,6 @@ proconio = { version = "=0.5.0", features = ["derive"] }
 text_io = "=0.1.13"
 rustc-hash = "=2.1.1"
 smallvec = { version = "=1.15.1", features = ["const_generics", "const_new", "write", "union", "serde", "arbitrary"] }
-
-[[bin]]
-name = "sample_test"
-path = "sample/test.rs"
 EOL
 fi
 
@@ -118,7 +114,8 @@ if [ ! -d "${WORKSPACE_DIR}/target" ]; then
     cargo fetch --manifest-path "$CARGO_TOML"
 fi
 
-CLEAN_PATH=$(echo "$FILE" | sed 's|^\./||')
+CLEAN_PATH=$(echo "$FILE" | sed 's|^/workspace/||'| sed 's|^\./||')
+echo "$CLEAN_PATH" 
 
 # 2. 各パーツを抽出
 # dirname で ABC/300 を取得し、それをさらに分解
@@ -139,10 +136,24 @@ case "$PREFIX" in
 
         ;;
     *)
-        # それ以外はすべて OtherContest フォルダに格納
-        BIN_NAME=$(echo "${SUFFIX}_${PROBLEM}")
+        # それ以外は相対パスの"/"を"_"に置き換えたものをBIN_NAMEとする
+        BIN_NAME=$(echo "$CLEAN_PATH"  | sed 's|/|_|g' | sed 's|\.rs$||')
         ;;
 esac
+
+# cargo.tomlにBIN_NAMEがないなら新規に作成する。
+if ! grep -q "name = \"$BIN_NAME\"" "$CARGO_TOML"; then
+    echo "Registering new binary: $BIN_NAME"
+    
+    # 3. [[bin]] 情報を追記
+    {
+        echo ""
+        echo "[[bin]]"
+        echo "name = \"$BIN_NAME\""
+        echo "path = \"$CLEAN_PATH\""
+    } >> "$CARGO_TOML"
+fi
+
 
 # ===== ビルド / 実行 =====
 echo "🔧 Compile Rust"
