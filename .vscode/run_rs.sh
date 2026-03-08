@@ -107,7 +107,7 @@ rustc-hash = "=2.1.1"
 smallvec = { version = "=1.15.1", features = ["const_generics", "const_new", "write", "union", "serde", "arbitrary"] }
 
 [[bin]]
-name = "workspacesample_test"
+name = "sample_test"
 path = "sample/test.rs"
 EOL
 fi
