@@ -8,12 +8,12 @@ shift # 最初の引数（コンテスト名）を捨てる
 if [ -z "$INPUT" ]; then
     echo "使用法: gen [コンテスト名] [問題数と使用する言語(任意: c/cpp/py/rs)]"
     echo "例: gen abc350       (ABCならデフォルトで7つ作成します、AWCなら5つ、ADTは9つ、それ以外は6つ作成します)"
-    echo "例: gen arc150 6     (A-Fの6つ作成、最大26問まで作成できます)"
+    echo "例: gen arc150 6 rs cpp    (A-Fのrustとcppファイルを作成)"
     exit 1
 fi
 
 # --- 1. 引数の解析 (数と言語を抽出) ---
-$COUNT=""
+COUNT=""
 for arg in "$@"; do
     if [[ "$arg" =~ ^[0-9]+$ ]]; then
         COUNT=$arg
