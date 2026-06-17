@@ -31,8 +31,7 @@
         "C_Cpp.default.compilerPath": "/usr/bin/gcc-15",
         "C_Cpp.default.browse.path": [
           "/usr/include",
-          "/lib/ac-library",
-          "/opt/boost/gcc/include"
+          "/lib/ac-library"
         ],
         "python.languageServer": "Pylance",
         "python.analysis.typeCheckingMode": "basic",

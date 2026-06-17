@@ -5,13 +5,12 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/lib/ac-library",
-                "/usr/include",
-                "/opt/boost/gcc/include"
+                "/usr/include"
             ],
             "defines": [
                 "ONLINE_JUDGE",
                 "ATCODER",
-                "JUDGE_LOCAL"
+                "JUDGE_LOCAL" //個人用環境用マクロ
             ],
             "compilerPath": "/usr/bin/g++",
             "cStandard": "c17",
