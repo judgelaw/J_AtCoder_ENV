@@ -1,0 +1,13 @@
+# 全てを無視
+*
+!*/
+
+# gitに上げるもののみ記述
+!.devcontainer/**
+!.vscode/**
+!sample/**
+!template/**
+!.wslconfig
+!.gitignore
+!readme.md
+!LICENSE
