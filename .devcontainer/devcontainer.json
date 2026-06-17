@@ -1,5 +1,5 @@
 {
-  "name": "Ubuntu 25.10 C++/Python/Rust Dev",
+  "name": "J_AtCoder_ENV",
   "build": {
     "dockerfile": "Dockerfile",
     "context": ".."

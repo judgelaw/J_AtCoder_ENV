@@ -16,7 +16,6 @@ CXXFLAGS="
 -Wextra
 -march=native
 -mtune=native
--flto=auto
 -fconstexpr-depth=2147483647
 -fconstexpr-loop-limit=2147483647
 -fconstexpr-ops-limit=2147483647
@@ -26,12 +25,9 @@ CXXFLAGS="
 
 INCLUDES="
 -I/lib/ac-library
--I/usr/include/eigen3
--I/opt/boost/gcc/include
 "
 
 LIBS="
--L/opt/boost/gcc/lib
 -lboost_serialization
 -lboost_system
 -lgmpxx
