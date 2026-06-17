@@ -8,6 +8,7 @@
 !sample/**
 !template/**
 !.wslconfig
+!.gitattributes
 !.gitignore
 !readme.md
 !LICENSE
